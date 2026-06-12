@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_commerce_bridge_user" model="res.groups">
+        <field name="name">CommerceBridge User</field>
+    </record>
+
+    <record id="group_commerce_bridge_manager" model="res.groups">
+        <field name="name">CommerceBridge Manager</field>
+        <field name="implied_ids" eval="[(4, ref('commerce_bridge_magento2.group_commerce_bridge_user'))]"/>
+    </record>
+</odoo>
