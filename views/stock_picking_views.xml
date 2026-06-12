@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_picking_form_commerce_bridge_magento" model="ir.ui.view">
+        <field name="name">stock.picking.form.commerce.bridge.magento</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_commerce_bridge_export_magento_shipment" type="object" string="Export Magento Shipment" groups="commerce_bridge_magento2.group_commerce_bridge_manager"/>
+            </xpath>
+            <xpath expr="//sheet/notebook" position="inside">
+                <page string="Magento">
+                    <group>
+                        <field name="commerce_bridge_magento_exported" readonly="1"/>
+                        <field name="commerce_bridge_magento_last_export_at" readonly="1"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

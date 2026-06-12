@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_commerce_bridge_mapping_list" model="ir.ui.view">
+        <field name="name">commerce.bridge.mapping.list</field>
+        <field name="model">commerce.bridge.mapping</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'unmapped' and required_for_sync" decoration-muted="state == 'ignored'">
+                <field name="instance_id"/>
+                <field name="mapping_type"/>
+                <field name="magento_value"/>
+                <field name="magento_label"/>
+                <field name="odoo_display_name"/>
+                <field name="required_for_sync"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_commerce_bridge_mapping_form" model="ir.ui.view">
+        <field name="name">commerce.bridge.mapping.form</field>
+        <field name="model">commerce.bridge.mapping</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_mark_mapped" type="object" string="Mark Mapped" class="btn-primary"/>
+                    <button name="action_mark_ignored" type="object" string="Ignore"/>
+                    <button name="action_mark_unmapped" type="object" string="Reopen"/>
+                    <field name="state" widget="statusbar" statusbar_visible="unmapped,mapped,ignored"/>
+                </header>
+                <sheet>
+                    <h1><field name="magento_value"/></h1>
+                    <group>
+                        <group string="Magento">
+                            <field name="instance_id"/>
+                            <field name="mapping_type"/>
+                            <field name="magento_value"/>
+                            <field name="magento_label"/>
+                            <field name="required_for_sync"/>
+                            <field name="active"/>
+                        </group>
+                        <group string="Odoo Mapping">
+                            <field name="odoo_value" placeholder="Simple Odoo value, e.g. Manual Payment"/>
+                            <field name="odoo_model" placeholder="Optional technical model, e.g. account.journal"/>
+                            <field name="odoo_res_id" placeholder="Optional record ID"/>
+                            <field name="odoo_display_name" readonly="1"/>
+                        </group>
+                    </group>
+                    <group string="Notes">
+                        <field name="notes" nolabel="1"/>
+                    </group>
+                </sheet>
+                <chatter/>
+            </form>
+        </field>
+    </record>
+</odoo>

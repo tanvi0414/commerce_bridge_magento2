@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_commerce_bridge_product_binding_list" model="ir.ui.view">
+        <field name="name">commerce.bridge.product.binding.list</field>
+        <field name="model">commerce.bridge.product.binding</field>
+        <field name="arch" type="xml">
+            <list decoration-warning="sync_state == 'needs_review'" decoration-danger="sync_state == 'error'">
+                <field name="instance_id"/>
+                <field name="sku"/>
+                <field name="name"/>
+                <field name="type_id"/>
+                <field name="odoo_product_id"/>
+                <field name="price"/>
+                <field name="magento_status"/>
+                <field name="magento_updated_at"/>
+                <field name="sync_state"/>
+                <button name="action_enqueue_stock_export" type="object" string="Export Stock" class="btn-link"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_commerce_bridge_product_binding_form" model="ir.ui.view">
+        <field name="name">commerce.bridge.product.binding.form</field>
+        <field name="model">commerce.bridge.product.binding</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_product" type="object" string="Open Odoo Product"/>
+                    <button name="action_enqueue_stock_export" type="object" string="Export Stock" class="btn-primary"/>
+                    <field name="sync_state" widget="statusbar" statusbar_visible="new,synced,needs_review,error"/>
+                </header>
+                <sheet>
+                    <h1><field name="name"/></h1>
+                    <group>
+                        <group string="Magento">
+                            <field name="instance_id"/>
+                            <field name="magento_id"/>
+                            <field name="sku"/>
+                            <field name="type_id"/>
+                            <field name="attribute_set_id"/>
+                            <field name="magento_status"/>
+                            <field name="visibility"/>
+                            <field name="magento_updated_at"/>
+                        </group>
+                        <group string="Odoo">
+                            <field name="odoo_product_id"/>
+                            <field name="odoo_template_id"/>
+                            <field name="price"/>
+                            <field name="weight"/>
+                            <field name="last_import_at" readonly="1"/>
+                            <field name="last_export_at" readonly="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Categories">
+                            <field name="category_binding_ids"/>
+                        </page>
+                        <page string="Custom Attributes">
+                            <field name="custom_attributes_json" nolabel="1" widget="text"/>
+                        </page>
+                        <page string="Raw Magento Payload">
+                            <field name="raw_json" nolabel="1" widget="text" readonly="1"/>
+                        </page>
+                        <page string="Error">
+                            <field name="last_error" nolabel="1" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_commerce_bridge_order_binding_list" model="ir.ui.view">
+        <field name="name">commerce.bridge.sale.order.binding.list</field>
+        <field name="model">commerce.bridge.sale.order.binding</field>
+        <field name="arch" type="xml">
+            <list decoration-warning="total_difference != 0" decoration-danger="sync_state == 'error'">
+                <field name="instance_id"/>
+                <field name="magento_increment_id"/>
+                <field name="sale_id"/>
+                <field name="partner_id"/>
+                <field name="magento_status"/>
+                <field name="grand_total"/>
+                <field name="total_difference"/>
+                <field name="magento_created_at"/>
+                <field name="sync_state"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_commerce_bridge_order_binding_form" model="ir.ui.view">
+        <field name="name">commerce.bridge.sale.order.binding.form</field>
+        <field name="model">commerce.bridge.sale.order.binding</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_open_order" type="object" string="Open Odoo Order" class="btn-primary"/>
+                    <field name="sync_state" widget="statusbar" statusbar_visible="new,synced,needs_review,error"/>
+                </header>
+                <sheet>
+                    <h1><field name="magento_increment_id"/></h1>
+                    <group>
+                        <group string="Magento">
+                            <field name="instance_id"/>
+                            <field name="magento_id"/>
+                            <field name="magento_status"/>
+                            <field name="magento_state"/>
+                            <field name="payment_method"/>
+                            <field name="shipping_method"/>
+                            <field name="magento_created_at"/>
+                            <field name="magento_updated_at"/>
+                        </group>
+                        <group string="Odoo">
+                            <field name="sale_id"/>
+                            <field name="partner_id"/>
+                            <field name="currency_code"/>
+                            <field name="grand_total"/>
+                            <field name="shipping_amount"/>
+                            <field name="discount_amount"/>
+                            <field name="tax_amount"/>
+                            <field name="total_difference"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Order Items for Shipment">
+                            <field name="order_items_json" nolabel="1" widget="text" readonly="1"/>
+                        </page>
+                        <page string="Raw Magento Payload">
+                            <field name="raw_json" nolabel="1" widget="text" readonly="1"/>
+                        </page>
+                        <page string="Error">
+                            <field name="last_error" nolabel="1" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_commerce_bridge_category_binding_list" model="ir.ui.view">
+        <field name="name">commerce.bridge.category.binding.list</field>
+        <field name="model">commerce.bridge.category.binding</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="instance_id"/>
+                <field name="magento_id"/>
+                <field name="name"/>
+                <field name="odoo_category_id"/>
+                <field name="level"/>
+                <field name="path"/>
+                <field name="sync_state"/>
+            </list>
+        </field>
+    </record>
+</odoo>
