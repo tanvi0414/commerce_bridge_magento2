@@ -8,7 +8,7 @@ It focuses on safe go-live, recoverable queue jobs, non-technical mapping screen
 readiness checks, product/order/customer sync foundations, inventory export, shipments,
 logs, reconciliation, and advanced B2B/MSI scaffolding.
     """,
-    "version": "18.0.1.0.0",
+    "version": "17.0.1.0.0",
     "category": "Sales/Commerce",
     "author": "CoDE2",
     "license": "OPL-1",
