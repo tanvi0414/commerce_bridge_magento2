@@ -10,9 +10,10 @@ logs, reconciliation, and advanced B2B/MSI scaffolding.
     """,
     "version": "19.0.1.0.0",
     "category": "Sales/Commerce",
-    "author": "CommerceBridge",
-    "website": "CoDe2",
+    "author": "CoDE2",
     "license": "OPL-1",
+    "price": 389.00,
+    "currency": "USD",
     "depends": [
         "base",
         "mail",
